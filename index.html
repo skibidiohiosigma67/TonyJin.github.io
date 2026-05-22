@@ -3,209 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tony Jin | Personal Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Tony | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS Styling [cite: 60] */
         :root {
-            --primary: #1A365D;
-            --secondary: #2B6CB0;
-            --accent: #E2E8F0;
-            --text-dark: #2D3748;
-            --text-light: #718096;
-            --bg-color: #F7FAFC;
+            --bg-color: #f4f7f6;
+            --text-color: #2b2d42;
+            --card-bg: #ffffff;
+            --accent-color: #3a86ff;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
-        
-        /* Navigation Bar  */
-        nav {
-            position: fixed; top: 0; width: 100%; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --accent-color: #4cc9f0;
+            --nav-bg: rgba(18, 18, 18, 0.9);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        nav h1 { font-size: 1.5rem; color: var(--primary); }
-        nav ul { list-style: none; display: flex; gap: 2rem; }
-        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: color 0.3s; }
-        nav ul li a:hover { color: var(--secondary); }
 
-        /* Sections and Layout [cite: 57] */
-        section { padding: 6rem 2rem 4rem; max-width: 1000px; margin: auto; }
-        h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; text-align: center; }
-        h3 { color: var(--secondary); margin-bottom: 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
-        /* Cards & Interactivity */
-        .card-container { display: grid; gap: 1.5rem; }
-        .card {
-            background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid var(--secondary);
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-        .icon { font-size: 1.5rem; color: var(--secondary); margin-right: 10px; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; transition: var(--transition); overflow-x: hidden; }
 
-        /* Skills Grid [cite: 54] */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .skill-tag { display: inline-block; background: var(--accent); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem; margin: 0.2rem; font-weight: 600; }
+        /* Scroll Progress Bar */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-color); width: 0%; z-index: 9999; }
 
-        /* Form Styling [cite: 68] */
-        form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto; }
-        input, textarea { padding: 0.8rem; border: 1px solid #CBD5E0; border-radius: 4px; font-size: 1rem; }
-        button { background: var(--primary); color: white; border: none; padding: 1rem; font-size: 1rem; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
-        button:hover { background: var(--secondary); }
-
-        /* Animations */
-        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(10px); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        nav .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); letter-spacing: 1px; }
+        nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 600; transition: var(--transition); }
+        nav ul li a:hover { color: var(--accent-color); }
         
-        /* Text Readability [cite: 56] */
-        p { font-size: 1.1rem; color: #4A5568; margin-bottom: 1rem; }
+        /* Theme Toggle */
+        .theme-switch { cursor: pointer; font-size: 1.2rem; color: var(--text-color); transition: var(--transition); background: none; border: none; }
+        .theme-switch:hover { color: var(--accent-color); transform: rotate(15deg); }
+
+        /* Sections */
+        section { min-height: 100vh; padding: 8rem 5% 4rem; display: flex; flex-direction: column; justify-content: center; }
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; }
+        .section-title { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--accent-color); border-radius: 2px; }
+
+        /* Hero / About Me */
+        #about { text-align: center; align-items: center; }
+        .typewriter { font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--accent-color); min-height: 70px; }
+        .about-text { font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--text-color); opacity: 0.9; }
+
+        /* Resume Section */
+        .resume-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media(min-width: 768px) { .resume-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .card { background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); transition: var(--transition); border-top: 4px solid transparent; }
+        .card:hover { transform: translateY(-10px); border-top: 4px solid var(--accent-color); }
+        
+        .card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; font-size: 1.5rem; border-bottom: 2px solid var(--bg-color); padding-bottom: 10px; }
+        .card h3 i { color: var(--accent-color); }
+        
+        .resume-item { margin-bottom: 1.5rem; }
+        .resume-item h4 { font-size: 1.1rem; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 8px; }
+        .resume-item p { font-size: 0.95rem; opacity: 0.8; }
+
+        /* Skills Section */
+        .skills-container { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media(min-width: 992px) { .skills-container { grid-template-columns: 1fr 1fr 1fr; } }
+        
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .tag { background: var(--bg-color); color: var(--accent-color); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--accent-color); transition: var(--transition); cursor: default; }
+        .tag:hover { background: var(--accent-color); color: white; transform: scale(1.05); }
+
+        /* Interactive Accordion for Soft/Academic Skills */
+        .accordion { background: var(--bg-color); color: var(--text-color); cursor: pointer; padding: 18px; width: 100%; text-align: left; border: none; outline: none; transition: 0.4s; border-radius: 8px; margin-top: 10px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .active, .accordion:hover { background: var(--accent-color); color: white; }
+        .panel { padding: 0 18px; background-color: var(--card-bg); max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; border-radius: 0 0 8px 8px; }
+        .panel p { padding: 15px 0; font-size: 0.95rem; opacity: 0.9; }
+
+        /* Scroll Animations */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
+    <div id="progress-bar"></div>
+
     <nav>
-        <h1>Tony Jin</h1>
+        <div class="logo">Tony.</div>
         <ul>
-            <li><a href="#about">About Me</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>
+                <button class="theme-switch" id="theme-btn">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
         </ul>
     </nav>
 
-    <section id="about" class="fade-in">
-        <h2>About Me</h2>
-        <div class="card">
-            <p>Hello, my name is Tony. I am a 10th-grade student at The Browning School in New York City[cite: 186], having previously attended a public school in Scarsdale.</p>
-            <p>My academic interests span across the sciences and public policy, driving my active participation in the Urban Barcoding Project and Public Forum debate[cite: 187], where I currently compete as a second speaker focusing heavily on policy resolutions like executive war powers and FTC regulation.</p>
-            <p>As a dedicated musician, I serve as Concertmaster for the Ovation Ensemble, a leadership role that has deeply enhanced my appreciation for the collaborative nature of orchestral performance[cite: 188]. I also occasionally participate in Model UN to further explore international relations and global problem-solving[cite: 189]. In my creative time, I am an author of poetry—experimenting with typographical structures and modern slang in pieces like "key shift" and "67 is so sigma"—and an avid Clash Royale player utilizing a LumberLoon Freeze deck.</p>
-            <p>Beyond academics and the arts, I am a committed athlete, currently serving as captain for my school's varsity tennis team[cite: 190], competing in the 1st singles position.</p>
+    <section id="about">
+        <div class="container reveal">
+            <div class="typewriter" id="typewriter-text"></div>
+            <p class="about-text">
+                I am a 10th-grade student at The Browning School in New York City. My academic interests span across the sciences and public policy, driving my active participation in the Urban Barcoding Project and Public Forum debate. As a dedicated musician, I serve as Concertmaster for the Ovation Ensemble, a leadership role that has deeply enhanced my appreciation for the collaborative nature of orchestral performance. I also occasionally participate in Model UN to further explore international relations and global problem-solving. Beyond academics and music, I am a committed athlete, currently serving as captain for my school's varsity tennis team.
+            </p>
         </div>
     </section>
 
-    <section id="resume" class="fade-in">
-        <h2>Resume</h2>
-        
-        <h3>Education [cite: 47]</h3>
-        <div class="card">
-            <p><strong><i class="fas fa-graduation-cap icon"></i> The Browning School, New York City</strong></p>
-            <p>Class of 2028 [cite: 194]</p>
-        </div>
+    <section id="resume">
+        <div class="container">
+            <h2 class="section-title reveal">Resume & Experience</h2>
+            <div class="resume-grid">
+                
+                <div class="card reveal">
+                    <h3><i class="fas fa-graduation-cap"></i> Education & Activities</h3>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-school"></i> The Browning School, New York City</h4>
+                        <p>Class of 2028</p>
+                    </div>
+                    <hr style="border: 0; height: 1px; background: var(--bg-color); margin: 15px 0;">
+                    <div class="resume-item">
+                        <h4><i class="fas fa-gavel"></i> Public Forum Debate</h4>
+                        <p>Active competitor; routinely research, draft, and present comprehensive "pro" and "con" cases on complex policy topics.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-dna"></i> Urban Barcoding Project</h4>
+                        <p>Student Researcher; engage in genetic sequencing and biodiversity research, utilizing wet-lab techniques to analyze biological samples.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-music"></i> Ovation Ensemble (Orchestra)</h4>
+                        <p>Violinist; collaborate with peers to rehearse and perform complex orchestral repertoires.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-table-tennis"></i> Varsity Tennis</h4>
+                        <p>Team Captain</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-globe"></i> Model UN</h4>
+                        <p>Delegate; participate in committee sessions and draft resolutions on global issues.</p>
+                    </div>
+                </div>
 
-        <h3 style="margin-top: 2rem;">Extracurricular Activities [cite: 49, 195]</h3>
-        <div class="card-container">
-            <div class="card">
-                <p><strong><i class="fas fa-gavel icon"></i> Public Forum Debate</strong></p>
-                <p>Active competitor; routinely research, draft, and present comprehensive "pro" and "con" cases on complex policy topics[cite: 196].</p>
-            </div>
-            <div class="card">
-                <p><strong><i class="fas fa-dna icon"></i> Urban Barcoding Project</strong></p>
-                <p>Student Researcher; engage in genetic sequencing and biodiversity research, utilizing wet-lab techniques to analyze biological samples[cite: 199].</p>
-            </div>
-            <div class="card">
-                <p><strong><i class="fas fa-music icon"></i> Ovation Ensemble (Orchestra)</strong></p>
-                <p>Violinist (Concertmaster); collaborate with peers to rehearse and perform complex orchestral repertoires[cite: 200].</p>
-            </div>
-            <div class="card">
-                <p><strong><i class="fas fa-table-tennis icon"></i> Varsity Tennis</strong></p>
-                <p>Team Captain[cite: 201]; 1st singles position.</p>
-            </div>
-            <div class="card">
-                <p><strong><i class="fas fa-globe icon"></i> Model UN</strong></p>
-                <p>Delegate; participate in committee sessions and draft resolutions on global issues[cite: 202].</p>
-            </div>
-        </div>
+                <div class="card reveal">
+                    <h3><i class="fas fa-project-diagram"></i> Projects & Civic Leadership</h3>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-file-signature"></i> Civic Policy Development</h4>
+                        <p>Developed and presented a comprehensive policy proposal discussing the NYC driving age, featuring economic impact analysis and graduated licensing safety frameworks.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-cube"></i> Engineering & 3D Design</h4>
+                        <p>Applied the iterative engineering design process to conceptualize, digitally model (CAD), and 3D-print a custom, functional backpack hook.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-flask"></i> Science/Lab Research</h4>
+                        <p>Executed a primary research investigation titled "Effect of Initial Solution Temperature on the Settling Rate of a Silver Chloride Precipitate."</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4><i class="fas fa-comments"></i> Civic Dialogue</h4>
+                        <p>Designed and facilitated a 30-minute in-class constructive dialogue session analyzing the Terry v. Ohio Supreme Court ruling.</p>
+                    </div>
+                </div>
 
-        <h3 style="margin-top: 2rem;">School Projects & Civic Leadership [cite: 203]</h3>
-        <div class="card-container">
-            <div class="card">
-                <p><strong>Civic Policy Development</strong></p>
-                <p>Developed and presented a comprehensive policy proposal discussing the NYC driving age, featuring economic impact analysis and graduated licensing safety frameworks[cite: 204].</p>
-            </div>
-            <div class="card">
-                <p><strong>Engineering & 3D Design</strong></p>
-                <p>Applied the iterative engineering design process to conceptualize, digitally model (CAD), and 3D-print a custom, functional backpack hook[cite: 205, 206].</p>
-            </div>
-            <div class="card">
-                <p><strong>Science/Lab Research</strong></p>
-                <p>Executed a primary research investigation titled "Effect of Initial Solution Temperature on the Settling Rate of a Silver Chloride Precipitate." [cite: 207]</p>
-            </div>
-            <div class="card">
-                <p><strong>Civic Dialogue</strong></p>
-                <p>Designed and facilitated a 30-minute in-class constructive dialogue session analyzing the Terry v. Ohio Supreme Court ruling[cite: 208].</p>
-            </div>
-        </div>
-
-        <h3 style="margin-top: 2rem;">Academic Journey & Growth</h3>
-        <div class="card-container">
-            <div class="card">
-                <p><strong>Persistence in Competitions & Programs</strong></p>
-                <p>Committed to challenging myself beyond my comfort zone. This journey includes embracing resilience through non-attendance outcomes for selective summer programs and applying learning experiences following All State Orchestra rejections.</p>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="fade-in">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-            <div class="card">
-                <h3>Technical & Laboratory [cite: 211]</h3>
-                <span class="skill-tag">Wet-Lab Techniques</span>
-                <span class="skill-tag">PCR & DNA Barcoding [cite: 212]</span>
-                <span class="skill-tag">CAD & 3D Printing [cite: 213]</span>
-                <span class="skill-tag">Python Programming [cite: 213]</span>
-                <span class="skill-tag">Transformer Models</span>
-                <span class="skill-tag">Data Collection [cite: 214]</span>
-            </div>
-            <div class="card">
-                <h3>Academic & Communication [cite: 215]</h3>
-                <p><strong>Public Speaking & Argumentation:</strong> I have extensive experience in extemporaneous speaking and formal debate[cite: 216, 218]. I am skilled in breaking down complex, multi-layered issues into logical "voters" for an audience, maintaining composure during high-pressure cross-examinations, and adapting my delivery style for different panel compositions[cite: 219].</p>
-                <p><strong>Policy Research & Presentation:</strong> I am proficient in synthesizing diverse data sources, ranging from economic impact studies to legal precedents, into cohesive policy papers[cite: 220, 221]. I am capable of translating technical data into visually engaging presentations that drive civic engagement and clarity[cite: 222].</p>
-            </div>
-            <div class="card">
-                <h3>Personal / Soft Skills [cite: 223]</h3>
-                <p><strong>Ensemble Collaboration & Active Listening:</strong> Developed through years of orchestral performance as a violinist, this involves "musical empathy"[cite: 226, 227]. This is the ability to anticipate the timing and phrasing of peers through non-verbal cues and active listening to ensure a unified, harmonious collective output under the direction of a conductor[cite: 228].</p>
-                <p><strong>Team Leadership & Mentorship:</strong> As Varsity Tennis Captain and Concertmaster, I focus on fostering a culture of accountability and encouragement[cite: 229, 230]. This includes providing technical feedback to younger peers, managing team morale, and acting as a bridge between the group and the coaching staff[cite: 231].</p>
-                <p><strong>Constructive Dialogue Facilitation:</strong> I am trained in the art of moderated discussion on sensitive or polarized topics[cite: 232, 233]. I prioritize creating a "brave space" where participants feel comfortable analyzing controversial rulings grounded in fact and mutual respect[cite: 234].</p>
-            </div>
-        </div>
-    </section>
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title reveal">Technical & Professional Skills</h2>
+            <div class="skills-container">
+                
+                <div class="card reveal">
+                    <h3><i class="fas fa-laptop-code"></i> Laboratory & Tech</h3>
+                    <p style="opacity: 0.8; font-size: 0.9rem;">Core technical competencies in science and computer engineering.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Wet-Lab Techniques</span>
+                        <span class="tag">PCR & DNA Barcoding</span>
+                        <span class="tag">CAD & 3D Printing</span>
+                        <span class="tag">Python Programming</span>
+                        <span class="tag">Data Collection</span>
+                        <span class="tag">Scientific Analysis</span>
+                    </div>
+                </div>
 
-    <section id="contact" class="fade-in">
-        <h2>Contact Me</h2>
-        <div class="card" style="border-left: 4px solid var(--primary);">
-            <p style="text-align: center;">Please reach out via email for any inquiries or collaborations.</p>
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted successfully!');">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <textarea rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+                <div class="card reveal">
+                    <h3><i class="fas fa-book-reader"></i> Academic & Comms</h3>
+                    
+                    <button class="accordion">Public Speaking <i class="fas fa-chevron-down"></i></button>
+                    <div class="panel">
+                        <p>Extensive experience in extemporaneous speaking and formal debate. Skilled in breaking down complex, multi-layered issues into logical "voters" for an audience, maintaining composure during high-pressure cross-examinations, and adapting delivery style for different panel compositions.</p>
+                    </div>
+
+                    <button class="accordion">Policy Research & Design <i class="fas fa-chevron-down"></i></button>
+                    <div class="panel">
+                        <p>Proficient in synthesizing diverse data sources, ranging from economic impact studies to legal precedents, into cohesive policy papers. Capable of translating technical data (such as graduated licensing safety frameworks) into visually engaging presentations that drive civic engagement and clarity.</p>
+                    </div>
+                </div>
+
+                <div class="card reveal">
+                    <h3><i class="fas fa-users"></i> Personal & Soft Skills</h3>
+                    
+                    <button class="accordion">Ensemble Collaboration <i class="fas fa-chevron-down"></i></button>
+                    <div class="panel">
+                        <p>Developed through years of orchestral performance as a violinist, involving "musical empathy." This is the ability to anticipate the timing and phrasing of peers through non-verbal cues and active listening to ensure a unified, harmonious collective output under the direction of a conductor.</p>
+                    </div>
+
+                    <button class="accordion">Leadership & Mentorship <i class="fas fa-chevron-down"></i></button>
+                    <div class="panel">
+                        <p>As Varsity Tennis Captain and Concertmaster, I focus on fostering a culture of accountability and encouragement. This includes providing technical feedback to younger peers, managing team morale during high-stakes matches or rehearsals, and acting as a bridge between the group and coaching staff.</p>
+                    </div>
+
+                    <button class="accordion">Dialogue Facilitation <i class="fas fa-chevron-down"></i></button>
+                    <div class="panel">
+                        <p>Trained in moderated discussion on sensitive or polarized topics. Prioritize creating a "brave space" where participants comfortably analyze controversial rulings (like Terry v. Ohio) through objective inquiry, ensuring all voices are heard while keeping conversation grounded in fact and mutual respect.</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <script>
-        // Intersection Observer for scroll animations
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            });
-        }, appearOptions);
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-btn');
+        const icon = themeBtn.querySelector('i');
+        
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            }
+        });
 
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+
+        // Typewriter Effect
+        const text = "Hello, my name is Tony.";
+        let i = 0;
+        const speed = 100; // Typing speed in ms
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        // Start typewriter after a short delay
+        setTimeout(typeWriter, 500);
+
+        // Accordion functionality
+        var accordions = document.querySelectorAll(".accordion");
+        accordions.forEach(acc => {
+            acc.addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                var icon = this.querySelector('i');
+                
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    icon.style.transform = "rotate(0deg)";
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    icon.style.transform = "rotate(180deg)";
+                }
             });
         });
     </script>
