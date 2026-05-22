@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Jin | Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Styling [cite: 60] */
+        :root {
+            --primary: #1A365D;
+            --secondary: #2B6CB0;
+            --accent: #E2E8F0;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+            --bg-color: #F7FAFC;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+        
+        /* Navigation Bar  */
+        nav {
+            position: fixed; top: 0; width: 100%; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+        }
+        nav h1 { font-size: 1.5rem; color: var(--primary); }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--secondary); }
+
+        /* Sections and Layout [cite: 57] */
+        section { padding: 6rem 2rem 4rem; max-width: 1000px; margin: auto; }
+        h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; text-align: center; }
+        h3 { color: var(--secondary); margin-bottom: 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; }
+        
+        /* Cards & Interactivity */
+        .card-container { display: grid; gap: 1.5rem; }
+        .card {
+            background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid var(--secondary);
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .icon { font-size: 1.5rem; color: var(--secondary); margin-right: 10px; }
+
+        /* Skills Grid [cite: 54] */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .skill-tag { display: inline-block; background: var(--accent); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem; margin: 0.2rem; font-weight: 600; }
+
+        /* Form Styling [cite: 68] */
+        form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto; }
+        input, textarea { padding: 0.8rem; border: 1px solid #CBD5E0; border-radius: 4px; font-size: 1rem; }
+        button { background: var(--primary); color: white; border: none; padding: 1rem; font-size: 1rem; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
+        button:hover { background: var(--secondary); }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Text Readability [cite: 56] */
+        p { font-size: 1.1rem; color: #4A5568; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>Tony Jin</h1>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="fade-in">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>Hello, my name is Tony. I am a 10th-grade student at The Browning School in New York City[cite: 186], having previously attended a public school in Scarsdale.</p>
+            <p>My academic interests span across the sciences and public policy, driving my active participation in the Urban Barcoding Project and Public Forum debate[cite: 187], where I currently compete as a second speaker focusing heavily on policy resolutions like executive war powers and FTC regulation.</p>
+            <p>As a dedicated musician, I serve as Concertmaster for the Ovation Ensemble, a leadership role that has deeply enhanced my appreciation for the collaborative nature of orchestral performance[cite: 188]. I also occasionally participate in Model UN to further explore international relations and global problem-solving[cite: 189]. In my creative time, I am an author of poetry—experimenting with typographical structures and modern slang in pieces like "key shift" and "67 is so sigma"—and an avid Clash Royale player utilizing a LumberLoon Freeze deck.</p>
+            <p>Beyond academics and the arts, I am a committed athlete, currently serving as captain for my school's varsity tennis team[cite: 190], competing in the 1st singles position.</p>
+        </div>
+    </section>
+
+    <section id="resume" class="fade-in">
+        <h2>Resume</h2>
+        
+        <h3>Education [cite: 47]</h3>
+        <div class="card">
+            <p><strong><i class="fas fa-graduation-cap icon"></i> The Browning School, New York City</strong></p>
+            <p>Class of 2028 [cite: 194]</p>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Extracurricular Activities [cite: 49, 195]</h3>
+        <div class="card-container">
+            <div class="card">
+                <p><strong><i class="fas fa-gavel icon"></i> Public Forum Debate</strong></p>
+                <p>Active competitor; routinely research, draft, and present comprehensive "pro" and "con" cases on complex policy topics[cite: 196].</p>
+            </div>
+            <div class="card">
+                <p><strong><i class="fas fa-dna icon"></i> Urban Barcoding Project</strong></p>
+                <p>Student Researcher; engage in genetic sequencing and biodiversity research, utilizing wet-lab techniques to analyze biological samples[cite: 199].</p>
+            </div>
+            <div class="card">
+                <p><strong><i class="fas fa-music icon"></i> Ovation Ensemble (Orchestra)</strong></p>
+                <p>Violinist (Concertmaster); collaborate with peers to rehearse and perform complex orchestral repertoires[cite: 200].</p>
+            </div>
+            <div class="card">
+                <p><strong><i class="fas fa-table-tennis icon"></i> Varsity Tennis</strong></p>
+                <p>Team Captain[cite: 201]; 1st singles position.</p>
+            </div>
+            <div class="card">
+                <p><strong><i class="fas fa-globe icon"></i> Model UN</strong></p>
+                <p>Delegate; participate in committee sessions and draft resolutions on global issues[cite: 202].</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 2rem;">School Projects & Civic Leadership [cite: 203]</h3>
+        <div class="card-container">
+            <div class="card">
+                <p><strong>Civic Policy Development</strong></p>
+                <p>Developed and presented a comprehensive policy proposal discussing the NYC driving age, featuring economic impact analysis and graduated licensing safety frameworks[cite: 204].</p>
+            </div>
+            <div class="card">
+                <p><strong>Engineering & 3D Design</strong></p>
+                <p>Applied the iterative engineering design process to conceptualize, digitally model (CAD), and 3D-print a custom, functional backpack hook[cite: 205, 206].</p>
+            </div>
+            <div class="card">
+                <p><strong>Science/Lab Research</strong></p>
+                <p>Executed a primary research investigation titled "Effect of Initial Solution Temperature on the Settling Rate of a Silver Chloride Precipitate." [cite: 207]</p>
+            </div>
+            <div class="card">
+                <p><strong>Civic Dialogue</strong></p>
+                <p>Designed and facilitated a 30-minute in-class constructive dialogue session analyzing the Terry v. Ohio Supreme Court ruling[cite: 208].</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Academic Journey & Growth</h3>
+        <div class="card-container">
+            <div class="card">
+                <p><strong>Persistence in Competitions & Programs</strong></p>
+                <p>Committed to challenging myself beyond my comfort zone. This journey includes embracing resilience through non-attendance outcomes for selective summer programs and applying learning experiences following All State Orchestra rejections.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="fade-in">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="card">
+                <h3>Technical & Laboratory [cite: 211]</h3>
+                <span class="skill-tag">Wet-Lab Techniques</span>
+                <span class="skill-tag">PCR & DNA Barcoding [cite: 212]</span>
+                <span class="skill-tag">CAD & 3D Printing [cite: 213]</span>
+                <span class="skill-tag">Python Programming [cite: 213]</span>
+                <span class="skill-tag">Transformer Models</span>
+                <span class="skill-tag">Data Collection [cite: 214]</span>
+            </div>
+            <div class="card">
+                <h3>Academic & Communication [cite: 215]</h3>
+                <p><strong>Public Speaking & Argumentation:</strong> I have extensive experience in extemporaneous speaking and formal debate[cite: 216, 218]. I am skilled in breaking down complex, multi-layered issues into logical "voters" for an audience, maintaining composure during high-pressure cross-examinations, and adapting my delivery style for different panel compositions[cite: 219].</p>
+                <p><strong>Policy Research & Presentation:</strong> I am proficient in synthesizing diverse data sources, ranging from economic impact studies to legal precedents, into cohesive policy papers[cite: 220, 221]. I am capable of translating technical data into visually engaging presentations that drive civic engagement and clarity[cite: 222].</p>
+            </div>
+            <div class="card">
+                <h3>Personal / Soft Skills [cite: 223]</h3>
+                <p><strong>Ensemble Collaboration & Active Listening:</strong> Developed through years of orchestral performance as a violinist, this involves "musical empathy"[cite: 226, 227]. This is the ability to anticipate the timing and phrasing of peers through non-verbal cues and active listening to ensure a unified, harmonious collective output under the direction of a conductor[cite: 228].</p>
+                <p><strong>Team Leadership & Mentorship:</strong> As Varsity Tennis Captain and Concertmaster, I focus on fostering a culture of accountability and encouragement[cite: 229, 230]. This includes providing technical feedback to younger peers, managing team morale, and acting as a bridge between the group and the coaching staff[cite: 231].</p>
+                <p><strong>Constructive Dialogue Facilitation:</strong> I am trained in the art of moderated discussion on sensitive or polarized topics[cite: 232, 233]. I prioritize creating a "brave space" where participants feel comfortable analyzing controversial rulings grounded in fact and mutual respect[cite: 234].</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2>Contact Me</h2>
+        <div class="card" style="border-left: 4px solid var(--primary);">
+            <p style="text-align: center;">Please reach out via email for any inquiries or collaborations.</p>
+            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted successfully!');">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
