@@ -215,19 +215,13 @@
             color: var(--bg-color);
         }
 
-        /* PREMIUM 3D MODEL SHOWCASE */
+        /* PREMIUM FULL-WIDTH 3D MODEL SHOWCASE */
         .model-showcase {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+            display: flex;
+            flex-direction: column; /* Stacked completely to force max width */
+            gap: 3rem;
             margin: 2.5rem 0;
             width: 100%;
-        }
-
-        @media(min-width: 900px) {
-            .model-showcase {
-                grid-template-columns: 1fr 1fr;
-            }
         }
 
         .model-wrapper {
@@ -260,7 +254,8 @@
 
         .model-wrapper model-viewer {
             width: 100%;
-            height: 600px;
+            height: 70vh; /* Takes up 70% of the screen height */
+            min-height: 500px;
             background-color: transparent;
             outline: none;
         }
