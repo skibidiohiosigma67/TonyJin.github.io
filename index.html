@@ -216,6 +216,29 @@
             color: var(--bg-color);
         }
 
+        /* CONTACT BUTTON */
+        .contact-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 16px 36px;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: var(--bg-color);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .contact-btn:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
         /* PREMIUM FULL-WIDTH 3D MODEL SHOWCASE */
         .model-showcase {
             display: flex;
@@ -370,6 +393,7 @@
             <li><a href="#resume">Resume</a></li>
             <li><a href="#portfolio">Works</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -561,6 +585,18 @@
 
                 </div>
 
+            </div>
+        </section>
+
+        <!-- NEW CONTACT SECTION -->
+        <section id="contact" class="section-split fade-up">
+            <div class="section-header">
+                <h2>Contact</h2>
+            </div>
+            <div class="section-content">
+                <div class="resume-title">Get In Touch</div>
+                <p>I am always open to discussing new projects, research opportunities, and collaborations. Feel free to reach out directly.</p>
+                <a href="mailto:tonyqianshijin@gmail.com" class="contact-btn">Send me an email! ↗</a>
             </div>
         </section>
 
